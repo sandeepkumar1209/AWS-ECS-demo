@@ -1,19 +1,19 @@
 pipeline {
     agent any
     environment {
-        AWS_ACCOUNT_ID="<REPLACE WITH ACCOUNT ID>"
-        AWS_DEFAULT_REGION="<REPLACE WITH REGION>"
-	    CLUSTER_NAME="<REPLACE WITH CLUSTER NAME>"
-	    SERVICE_NAME="<REPLACE WITH SERVICE NAME>"
-	    TASK_DEFINITION_NAME="<REPLACE WITH TASK DEFINITION NAME>"
+        AWS_ACCOUNT_ID="844320006771"
+        AWS_DEFAULT_REGION="ap-south-1"
+	    CLUSTER_NAME="ProdCluster"
+	    SERVICE_NAME="ecs-service"
+	    TASK_DEFINITION_NAME="ecs-task"
 	    DESIRED_COUNT="1"
-        IMAGE_REPO_NAME="<REPLACE WITH ECR REPO NAME>"
+        IMAGE_REPO_NAME="jenkins-demo"
         //Do not edit the variable IMAGE_TAG. It uses the Jenkins job build ID as a tag for the new image.
         IMAGE_TAG="${env.BUILD_ID}"
         //Do not edit REPOSITORY_URI.
         REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
-	    registryCredential = "<REPLACE WITH NAME OF AWS CREDENTIAL>"
-	    JOB_NAME = "<REPLACE WITH JOB NAME>"
+	    registryCredential = "ecr-cred"
+	    JOB_NAME = "ecs-demo"
 	    TEST_CONTAINER_NAME = "${JOB_NAME}-test-server"
     
 }
